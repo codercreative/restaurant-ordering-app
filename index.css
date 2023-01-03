@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Smythe&display=swap");
+
+/* general */
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Smythe", cursive;
+}
+
+/* header  */
+.header-content {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.pizza-img {
+  width: 100%;
+  height: 15em;
+  object-fit: cover;
+}
+
+.title {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+}
+
+.sub-title {
+  position: absolute;
+  top: 150px;
+  left: 50px;
+}
+
+/* main / menu */
+
+.main {
+  padding: 3em;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  gap: 30px;
+  border-bottom: 1px solid #8b8b8b;
+}
+
+.menu-item-details {
+  display: flex;
+  gap: 30px;
+  padding: 2em 0;
+}
+
+.menu-item-emoji {
+  font-size: 5rem;
+}
+
+.menu-item-name {
+  margin: 0;
+}
+
+.menu-item-ingredients {
+  margin: 0.4rem 0;
+}
+
+.menu-item-price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.menu-item-btn {
+  height: 1.5em;
+  width: 1.5em;
+  min-width: 1.5em;
+  font-size: 1.5em;
+  border: 1px solid #8b8b8b;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.7;
+  cursor: pointer;
+  margin-top: 2.1em;
+}
