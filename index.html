@@ -24,10 +24,42 @@
     </header>
     <main class="main">
       <div id="menu-section" class="menu-section">
-        <!-- menu items here  -->
+        <!-- DEFAULT-STATE  -->
+      </div>
+      <div id="check-out-section" class="hidden">
+        <!-- PRE-CHECKOUT-STATE-->
+      </div>
+      <div id="payment-modal" class="payment-modal">
+        <!-- CHECKOUT-PAYMENT-MODAL-STATE -->
+        <div class="inner-payment-modal">
+          <h2>Enter card details</h2>
+          <form id="form">
+            <input
+              type="text"
+              id="customerName"
+              name="customerName"
+              placeholder="Enter your name"
+              required
+            />
+            <input
+              type="number"
+              id="cardNumber"
+              name="cardNumber"
+              placeholder="Enter card number"
+              required
+            />
+            <input
+              type="number"
+              id="cvv"
+              name="cvv"
+              placeholder="Enter CVV"
+              required
+            />
+            <button type="submit" class="pay-btn">Pay</button>
+          </form>
+        </div>
       </div>
     </main>
-    <footer></footer>
 
     <script src="index.js" type="module"></script>
   </body>
