@@ -92,13 +92,17 @@ body {
 /* CHECKOUT-PAYMENT-MODAL-STATE */
 
 .payment-modal {
-  display: none;
+  /* display: none; */
+
+  /* begin display modal at the center - with margin: auto */
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
   bottom: 0;
   margin: auto;
+  /* end of modal display */
+
   height: 360px;
   width: 350px;
   border-radius: 5px;
