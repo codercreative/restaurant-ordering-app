@@ -92,7 +92,7 @@ body {
 /* CHECKOUT-PAYMENT-MODAL-STATE */
 
 .payment-modal {
-  /* display: none; */
+  display: none;
 
   /* begin display modal at the center - with margin: auto */
   position: fixed;
