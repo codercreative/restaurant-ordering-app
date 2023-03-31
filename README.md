@@ -1,13 +1,3 @@
-# coc0840c8a4fe0388a94a4f89
-
-Quick start:
-
-```
-$ npm install
-$ npm start
-````
-
-Head over to https://vitejs.dev/ to learn more about using vite
 ## About Scrimba
 
 At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜

@@ -1,46 +1,113 @@
 import { menuArray } from "./data.js";
 
-// Generate menu html
-function getMenuHtml() {
+const menuEl = document.getElementById("menu");
+const orderContainer = document.getElementById("order-container");
+const orders = document.getElementById("orders");
+const paymentModal = document.getElementById("payment-modal");
+const modalCloseBtn = document.getElementById("close-btn");
+const form = document.getElementById("form");
+const thankYouMsg = document.getElementById("thank-you-msg");
+
+const cartArr = [];
+
+// Display menu html ==============================
+menuEl.innerHTML = displayMenuHtml(menuArray);
+
+// Event Listeners ==============================
+// clicking on the item and adding it to order
+document.addEventListener("click", function (e) {
+  if (e.target.dataset.id) {
+    const id = e.target.dataset.id;
+    const updateIndex = cartArr.findIndex((item) => item.id == id);
+
+    if (updateIndex > -1) {
+      //already in cart
+      cartArr[updateIndex].quantity += 1;
+    } else {
+      cartArr.push({ ...menuArray[id], quantity: 1 });
+    }
+
+    // console.log(cartArr)
+
+    orders.innerHTML = displayCartHtml(cartArr);
+    orderContainer.classList.remove("hidden");
+    orders.classList.remove("hidden");
+  }
+});
+
+document.addEventListener("click", function (e) {
+  if (e.target.id === "complete-order-btn") {
+    paymentModal.classList.remove("hidden");
+  }
+});
+
+// *Menu Html ==============================
+function displayMenuHtml(menu) {
   let menuHtml = "";
 
-  menuArray.forEach(function (item) {
+  menu.forEach(function (item) {
     menuHtml += `
-      <div class="menu-item">
+      <div class="menu-item" id=${item.id}>
         <div class="menu-item-details">
           <span class="menu-item-emoji">${item.emoji}</span>
           <div>
-            <h2 class="menu-item-name">${item.name}</h2>
+            <h2 class="menu-item-name" data-name=${item.name}>${item.name}</h2>
             <p class="menu-item-ingredients">${item.ingredients.join(", ")}</p>
-            <p class="menu-item-price">$${item.price}</p>
+            <p class="menu-item-price" data-price=${item.price}>$${
+      item.price
+    }</p>
           </div>  
         </div>
-        <button class="menu-add-item-btn">+</button>
-      </div>
-    `;
+        <button class="add-btn" data-id=${item.id}>+</button>
+      </div>`;
   });
   return menuHtml;
 }
 
-// render menu
+// *Cart html ==============================
+function displayCartHtml(cart) {
+  let cartHtml = "";
 
-function render() {
-  document.getElementById("menu-section").innerHTML = getMenuHtml();
+  let totalPrice = 0;
+
+  cart.forEach(function (item) {
+    const itemTotal = item.price * item.quantity;
+    cartHtml += `   
+    <div class="all-items" id=${item.id}>
+        <p class="order-name">${item.name}  (${item.quantity})</p>
+        <p class="order-price">$${itemTotal}</p>
+     </div>
+    
+         `;
+
+    totalPrice += itemTotal;
+  });
+
+  document.getElementById("order-price").innerHTML = `$${totalPrice}`;
+  return cartHtml;
 }
-render();
+displayCartHtml(cartArr);
 
-// Checklist
-// ✅show menu items
-// add event listener to add items to cart
-// add items to cart
-// render all the items
-// get the total price
-// option to remove items
-// hide order if no items present
-// hide and show modal
-// if no items hide pre-checkout
-// add event listener to submit button
-// ✅ create modal
-// render modal when submit button is clicked
-// make all fields required in modal state
-// when pay button clicked: close modal, create thank you message with user name, return to default state
+// *Close payment modal option=====================================
+modalCloseBtn.addEventListener("click", function () {
+  paymentModal.classList.add("hidden");
+});
+
+// *️Click on Pay button (submit) and display thank you message == DOES NOT APPEAR IN VSC??
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const userName = formData.get("customer-name");
+
+  let thankYou = ``;
+  thankYou = `
+      <p>Thank you, ${userName}! <br>
+      Your order is on its way!</p>
+      `;
+
+  thankYouMsg.innerHTML = thankYou;
+
+  thankYouMsg.classList.remove("hidden");
+  paymentModal.classList.add("hidden");
+  orderContainer.classList.add("hidden");
+});

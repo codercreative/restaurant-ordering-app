@@ -1,51 +1,58 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
-    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
-    <!-- Font Awesome CDN -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+
+    <title>Restaurant Ordering App</title>
   </head>
   <body>
     <header class="header">
-      <div class="header-content">
-        <img src="./images/pizza.jpg" alt="pizza" class="pizza-img" />
-        <h1 class="title left">Jimmy's Diner</h1>
-        <p class="sub-title left">The best burgers and pizzas in town</p>
-      </div>
+      <img src="./images/header.png" alt="pizza" class="header-img" />
     </header>
+
     <main class="main">
-      <div id="menu-section" class="menu-section">
-        <!-- DEFAULT-STATE  -->
-      </div>
-      <div id="check-out-section" class="hidden">
-        <!-- PRE-CHECKOUT-STATE-->
-      </div>
-      <div id="payment-modal" class="payment-modal">
-        <!-- CHECKOUT-PAYMENT-MODAL-STATE -->
+      <section id="menu" class="menu">
+        <!-- *menu rendered here  -->
+      </section>
+
+      <section id="order-container" class="order-container hidden">
+        <h3 class="order-title">Your Order</h3>
+        <div id="orders" class="hidden">
+          <!-- *cart rendered here-->
+        </div>
+        <div class="total-price">
+          <p class="order-name">Total price:</p>
+          <p class="order-price" id="order-price">$$$</p>
+        </div>
+        <button class="complete-order-btn" id="complete-order-btn">
+          Complete order
+        </button>
+      </section>
+
+      <section id="payment-modal" class="payment-modal hidden">
+        <div class="btn-container">
+          <button class="close-btn" id="close-btn">X</button>
+        </div>
         <div class="inner-payment-modal">
           <h2>Enter card details</h2>
           <form id="form">
             <input
               type="text"
-              id="customerName"
-              name="customerName"
+              id="customer-name"
+              name="customer-name"
               placeholder="Enter your name"
+              aria-label="customer-name"
               required
             />
             <input
               type="number"
-              id="cardNumber"
-              name="cardNumber"
+              id="card-number"
+              name="card-number"
               placeholder="Enter card number"
+              aria-label="card-number"
               required
             />
             <input
@@ -53,14 +60,17 @@
               id="cvv"
               name="cvv"
               placeholder="Enter CVV"
+              aria-label="cvv"
               required
             />
-            <button type="submit" class="pay-btn">Pay</button>
+            <button type="submit" class="order-btn">Pay</button>
           </form>
         </div>
-      </div>
-    </main>
+      </section>
 
-    <script src="index.js" type="module"></script>
+      <section class="thank-you-msg hidden" id="thank-you-msg"></section>
+    </main>
   </body>
+
+  <script src="index.js" type="module"></script>
 </html>
