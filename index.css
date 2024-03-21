@@ -71,7 +71,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* !Need help: a better way to center the button? --  */
   margin-top: 2.1em;
   align-self: center;
 }
@@ -96,12 +95,29 @@ body {
 .all-items,
 .total-price {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .order-name,
 .order-price {
   font-size: 1.5em;
+}
+
+.order-price {
+  margin-left: auto;
+}
+
+.remove-btn {
+  margin-left: 3px;
+  background-color: #fff;
+  border: none;
+  color: #8b8b8b;
+}
+
+.remove-btn:hover,
+.remove-btn:active {
+  color: #ba181b;
+  cursor: pointer;
 }
 
 .total-price {

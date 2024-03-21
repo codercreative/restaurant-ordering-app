@@ -10,14 +10,15 @@ const thankYouMsg = document.getElementById("thank-you-msg");
 
 const cartArr = [];
 
-// Display menu html ==============================
+// *Display menu html
 menuEl.innerHTML = displayMenuHtml(menuArray);
 
-// Event Listeners ==============================
+// *Event Listeners
 // clicking on the item and adding it to order
 document.addEventListener("click", function (e) {
   if (e.target.dataset.id) {
     const id = e.target.dataset.id;
+
     const updateIndex = cartArr.findIndex((item) => item.id == id);
 
     if (updateIndex > -1) {
@@ -35,13 +36,35 @@ document.addEventListener("click", function (e) {
   }
 });
 
+document.addEventListener("click", (e) => {
+  if (e.target.dataset.remove) {
+    const removeId = e.target.dataset.remove;
+
+    const removeIndex = cartArr.findIndex((item) => item.id == removeId);
+
+    if (removeIndex > -1) {
+      if (cartArr[removeIndex].quantity > 1) {
+        cartArr[removeIndex].quantity -= 1;
+      } else {
+        cartArr.splice(removeIndex, 1);
+      }
+    }
+
+    if (cartArr.length === 0) {
+      orderContainer.classList.add("hidden");
+    }
+  }
+  orders.innerHTML = displayCartHtml(cartArr);
+});
+
 document.addEventListener("click", function (e) {
   if (e.target.id === "complete-order-btn") {
     paymentModal.classList.remove("hidden");
   }
 });
 
-// *Menu Html ==============================
+// *Menu Html
+
 function displayMenuHtml(menu) {
   let menuHtml = "";
 
@@ -64,7 +87,8 @@ function displayMenuHtml(menu) {
   return menuHtml;
 }
 
-// *Cart html ==============================
+// *Cart html
+
 function displayCartHtml(cart) {
   let cartHtml = "";
 
@@ -75,6 +99,7 @@ function displayCartHtml(cart) {
     cartHtml += `   
     <div class="all-items" id=${item.id}>
         <p class="order-name">${item.name}  (${item.quantity})</p>
+        <button class="remove-btn" data-remove=${item.id}>remove</button>
         <p class="order-price">$${itemTotal}</p>
      </div>
     
@@ -88,7 +113,8 @@ function displayCartHtml(cart) {
 }
 displayCartHtml(cartArr);
 
-// *Close payment modal option=====================================
+// *Close payment modal option
+
 modalCloseBtn.addEventListener("click", function () {
   paymentModal.classList.add("hidden");
 });
