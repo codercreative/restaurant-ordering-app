@@ -1,11 +1,50 @@
-## About Scrimba
+## Restaurant Ordering App
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Frontend Developer Career Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
+### The challenge:
 
-- [Our courses](https://scrimba.com/allcourses)
-- [The Frontend Career Path](https://scrimba.com/learn/frontend)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
+A simple restaurant ordering app built with HTML/CSS/JavaScript.
 
-Happy Coding!
+### Screenshot
+
+![screenshot](images/screenshot.png)
+
+### Code to keep in mind
+
+Using box-shadow to make the modal the focus point:
+
+```css
+.payment-modal {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 400px;
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  padding: 10px;
+}
+```
+
+```js
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const userName = formData.get("customer-name");
+
+  let thankYou = "";
+
+  thankYou = `
+        <p>Thank you, ${userName}! <br> Your order is on its way!</p>
+    `;
+
+  thankYouMsg.innerHTML = thankYou;
+
+  thankYouMsg.classList.remove("hidden");
+  paymentModal.classList.add("hidden");
+  orderContainer.classList.add("hidden");
+});
+```
